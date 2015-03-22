@@ -1,0 +1,14 @@
+{
+  "name": "发声文本编辑器",
+  "version": "0.1.0",
+  "description": "发声文本编辑器.",
+  "main": "index.html",
+  "window": {
+    "width": 800,
+    "height": 600,
+    "show": true,
+    "title": "发声文本编辑器",
+    "toolbar": true,
+    "frame":true
+  }
+}

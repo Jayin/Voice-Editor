@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Glyphicons;
+    src: url('./bootstrap/fonts/glyphicons-halflings-regular.eot') format('embedded-opentype'),
+    url('./bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
+    url('./bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('./bootstrap/fonts/glyphicons-halflings-regular.svg') format('svg');
+}
+

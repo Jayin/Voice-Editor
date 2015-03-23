@@ -1,14 +1,22 @@
 {
-  "name": "发声文本编辑器",
+  "name": "Voice_Editor",
   "version": "0.1.0",
   "description": "发声文本编辑器.",
-  "main": "index.html",
+  "main": "main.html",
   "window": {
     "width": 800,
     "height": 600,
     "show": true,
     "title": "发声文本编辑器",
     "toolbar": true,
-    "frame":true
+    "frame": true
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-uglify": "^1.1.0",
+    "request": "^2.53.0"
+  },
+  "dependencies": {
+    "request": "^2.53.0"
   }
 }

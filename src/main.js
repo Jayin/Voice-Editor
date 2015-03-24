@@ -13,17 +13,22 @@ var fs = require('fs');
     };
 
     $('#btn-speak').on('click', function () {
-        var word = $(editor.getValue()).text();
+        var word = '';
+        if (!window.getSelection().isCollapsed) {
+            word = window.getSelection();
+        }
+
+        word = word || $(editor.getValue()).text() || '请写入文字';
+
         var opts = {
-            url: 'http://translate.google.cn/translate_tts?ie=UTF-8&q={word}&tl=zh-CN&total=1&idx=0&textlen=8&client=t',
+            url: 'http://translate.google.cn/translate_tts?ie=UTF-8&tl=zh-CN&total=1&idx=0&textlen=8&client=t&q=' + encodeURIComponent(word),
             headers: {
                 'User-Agent': 'request',
                 'Referer': 'http://translate.google.cn/?hl=en',
                 'Range': 'bytes=0-'
             }
         };
-        opts.url = opts.url.replace('{word}', encodeURIComponent(word));
-        console.log(opts);
+
         request.get(opts, function (err) {
             if (err) {
                 console.log(err);

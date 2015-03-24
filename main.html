@@ -8,7 +8,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!--simditor-->
-    <link rel="stylesheet" type="text/css" href="plugin/simditor/styles/simditor.css" />
+    <link rel="stylesheet" type="text/css" href="plugin/simditor/styles/simditor.css"/>
 
     <script type="text/javascript" src="plugin/simditor/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="plugin/simditor/scripts/module.js"></script>
@@ -19,29 +19,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
-<div class="container-fluid padding-empty">
+<div class="container-fluid">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Voice Editor
-                <small> v0.1.0</small>
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-                <li><a href="#">使用手册</a></li>
                 <li><a href="#">关于</a></li>
-                <li><a id="btn-speak" class="btn">发声</a></li>
+                <li></li>
             </ul>
+            <div class="navbar-form navbar-right">
+                <a id="btn-speak" class="btn btn-default">发声</a>
+                <a id="btn-openFile" class="btn btn-default">打开</a>
+                <a id="btn-saveFile" class="btn btn-default">保存</a>
+            </div>
         </div>
+
     </nav>
 
     <textarea id="editor" placeholder="这里输入内容" autofocus></textarea>
-    <audio id="audio" src="./voice/hello.mp31" ></audio>
+    <audio id="audio" src="./voice/hello.mp3"></audio>
+    <input class="invisible" id="input-openFile" type="file"/>
+    <input class="invisible" id="input-saveFile" type="file" nwsaveas="tmp.html"/>
 </div>
 <script src="js/jquery-1.11.2.js"></script>
 <script src="js/libs/main.js"></script>

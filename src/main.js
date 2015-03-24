@@ -84,6 +84,12 @@ $('#btn-openFile').on('click',function(evt){
     $('#input-openFile').trigger('click');
 });
 
+
+$('#btn-about').on('click',function(){
+    $('#modal-about').modal('show')
+});
+$('#modal-about').modal('show')
+
 var init = function () {
     play_audio('./voice/hello.mp3');
 }

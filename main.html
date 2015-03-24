@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Voice Editor</title>
+    <title></title>
     <script type="text/javascript" src="js/jquery-2.1.3.js"></script>
     <!--bootstrap-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Voice Editor
+            <a class="navbar-brand" href="#">Voice Editor<small id="text-version"></small>
             </a>
         </div>
 
@@ -36,9 +36,9 @@
                 <li></li>
             </ul>
             <div class="navbar-form navbar-right">
-                <a id="btn-speak" class="btn btn-default">发声</a>
-                <a id="btn-openFile" class="btn btn-default">打开</a>
-                <a id="btn-saveFile" class="btn btn-default">保存</a>
+                <a id="btn-speak" class="btn btn-default"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>发声</a>
+                <a id="btn-openFile" class="btn btn-default"><span class="glyphicon glyphicon-file"></span>打开</a>
+                <a id="btn-saveFile" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span>保存</a>
             </div>
         </div>
 

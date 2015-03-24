@@ -1,16 +1,33 @@
 {
   "name": "Voice_Editor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "发声文本编辑器.",
   "main": "main.html",
   "window": {
     "width": 800,
-    "height": 600,
+    "height": 610,
     "show": true,
     "title": "发声文本编辑器",
-    "toolbar": true,
-    "frame": true
+    "toolbar": false,
+    "frame": true,
+    "resizable":false
+
   },
+  "maintainers": [
+    {
+      "name": "Jayin Ton",
+      "email": "tonjayin@gmail.com",
+      "web": "http://www.jayinton.com"
+    }
+  ],
+  "bugs":"https://github.com/Jayin/Voice-Editor/issues",
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/Jayin/Voice-Editor.git",
+      "path": "Jayin/Voice-Editor"
+    }
+  ],
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-uglify": "^1.1.0",

@@ -88,9 +88,11 @@ $('#btn-openFile').on('click',function(evt){
 $('#btn-about').on('click',function(){
     $('#modal-about').modal('show')
 });
-$('#modal-about').modal('show')
 
 var init = function () {
+    //init UI
+    $('#text-version').text(' v' + gui.App.manifest.version);
+
     play_audio('./voice/hello.mp3');
 }
 init();

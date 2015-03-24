@@ -7,9 +7,10 @@ var fs = require('fs');
     });
 
     var play_audio = function (audio_src) {
-        $('#audio').attr('src', audio_src);
-        $('#audio')[0].play();
-    }
+        var ele_audio = $('#audio');
+        ele_audio.attr('src', audio_src);
+        ele_audio[0].play();
+    };
 
     $('#btn-speak').on('click', function () {
         var word = $(editor.getValue()).text();

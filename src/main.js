@@ -1,5 +1,15 @@
 var request = require('request');
 var fs = require('fs');
+var gui = require('nw.gui');
+
+if (process.platform === "darwin") {
+    var mb = new gui.Menu({type: 'menubar'});
+    mb.createMacBuiltin('Voice-Editor', {
+        hideEdit: false,
+        hideWindow: true
+    });
+    gui.Window.get().menu = mb;
+}
 
 (function ($) {
     var editor = new Simditor({

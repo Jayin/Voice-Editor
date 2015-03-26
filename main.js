@@ -1,6 +1,15 @@
+global.$ = $;
+
 var request = require('request');
 var fs = require('fs');
 var gui = require('nw.gui');
+
+
+var editor = new Simditor({
+    textarea: $('#editor')
+});
+var ele_audio = $('#audio');
+
 
 if (process.platform === "darwin") {
     var mb = new gui.Menu({type: 'menubar'});
@@ -11,16 +20,23 @@ if (process.platform === "darwin") {
     gui.Window.get().menu = mb;
 }
 
-global.$ = $;
-
-var editor = new Simditor({
-    textarea: $('#editor')
-});
 
 var play_audio = function (audio_src) {
-    var ele_audio = $('#audio');
     ele_audio.attr('src', audio_src);
     ele_audio[0].play();
+};
+
+var play_audios = function(list){
+    var index = 0;
+
+    ele_audio.on('ended',function(){
+        index++;
+        if(index<list.length){
+            play_audio(list[index]);
+        }
+
+    });
+    play_audio(list[0]);
 };
 
 //发声
@@ -31,24 +47,18 @@ $('#btn-speak').on('click', function () {
     }
 
     word = word || $(editor.getValue()).text() || '请写入文字';
+    voices = [];
 
-    var opts = {
-        url: 'http://translate.google.cn/translate_tts?ie=UTF-8&tl=zh-CN&total=1&idx=0&textlen=8&client=t&q=' + encodeURIComponent(word),
-        headers: {
-            'User-Agent': 'request',
-            'Referer': 'http://translate.google.cn/?hl=en',
-            'Range': 'bytes=0-'
+    for(var i=0;i<word.length;i++){
+        var path = './voice/raw/{cn}.mp3'.replace('{cn}',word[i]);
+        console.log(path);
+        if(fs.existsSync(path)){
+            voices.push(path)
         }
-    };
+    }
+    //分词，停顿
+    play_audios(voices);
 
-    request.get(opts, function (err) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            play_audio('./voice/tmp.mp3')
-        }
-    }).pipe(fs.createWriteStream('./voice/tmp.mp3'));
 });
 
 //处理保存到文件
@@ -90,6 +100,8 @@ $('#btn-about').on('click',function(){
 });
 
 var init = function () {
+
+
     //init UI
     $('#text-version').text(' v' + gui.App.manifest.version);
 

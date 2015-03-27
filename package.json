@@ -8,7 +8,7 @@
     "height": 610,
     "show": true,
     "title": "发声文本编辑器",
-    "toolbar": false,
+    "toolbar": true,
     "frame": true,
     "resizable": false
   },

@@ -47,31 +47,48 @@ $('#btn-speak').on('click', function () {
         sentence = window.getSelection();
     }
 
-    sentence = sentence || $(editor.getValue()).text() || '请写入文字';
+    sentence = sentence || $(editor.getValue()).text() || '请输入文字';
 
-    voices = [];
-    var type = 1;//单个字读
-    type=2; //分词
-    if(type == 1){
-        for(var i=0;i<sentence.length;i++){
-            var path = './voice/raw/{cn}.mp3'.replace('{cn}',sentence[i]);
-            console.log(path);
-            if(fs.existsSync(path)){
-                voices.push(path)
-            }
-        }
-    }else if(type == 2){
-        //var cut_words = cutSync(word);
-        var cut_words = cutSync(sentence);
-        for(var i=0;i<cut_words.length;i++){
-            var path = './voice/raw/{cn}.mp3'.replace('{cn}',cut_words[i]);
-            console.log(path);
+    //逐个读字
+    var single_word = function(sentence){
+        var voices = [];
+        for(var i=0; i<sentence.length; i++){
+            var path = './voice/raw/{cn}.mp3'.replace('{cn}', sentence[i]);
+
             if(fs.existsSync(path)){
                 voices.push(path)
             }else{
-                console.log(cut_words[i]+" voice not exiest");
+                console.error('[Word]: {word} is not exist!'.replace('{word}', sentence[i]));
             }
         }
+        return voices;
+    };
+
+    //分词
+    var cut_word = function(sentence){
+        var voices = [];
+
+        var cut_words = cutSync(sentence);
+        for(var i=0;i<cut_words.length;i++){
+            var path = './voice/raw/{cn}.mp3'.replace('{cn}',cut_words[i]);
+
+            if(fs.existsSync(path)){
+                voices.push(path)
+            }else{
+                console.error('[Segment]: {segment} is not exist!'.replace('{segment}', sentence[i]));
+                voices = voices.concat(single_word(sentence[i]));
+            }
+        }
+        return voices;
+    };
+
+    var voices = [];
+    var type = 1;//单个字读
+    type=2; //分词
+    if(type == 1){
+        voices = single_word(sentence);
+    }else if(type == 2){
+        voices = cut_word(sentence);
     }
 
     //分词，停顿

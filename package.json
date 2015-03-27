@@ -8,10 +8,9 @@
     "height": 610,
     "show": true,
     "title": "发声文本编辑器",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
-    "resizable":false
-
+    "resizable": false
   },
   "maintainers": [
     {
@@ -20,7 +19,7 @@
       "web": "http://www.jayinton.com"
     }
   ],
-  "bugs":"https://github.com/Jayin/Voice-Editor/issues",
+  "bugs": "https://github.com/Jayin/Voice-Editor/issues",
   "repositories": [
     {
       "type": "git",
@@ -31,7 +30,9 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-uglify": "^1.1.0",
-    "request": "^2.53.0"
+    "nodejieba": "^0.2.9",
+    "request": "^2.53.0",
+    "segment": "0.0.5"
   },
   "dependencies": {
     "request": "^2.53.0"

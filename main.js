@@ -3,7 +3,8 @@ global.$ = $;
 var request = require('request');
 var fs = require('fs');
 var gui = require('nw.gui');
-
+//var cutSync = require('./libs/jieba_wrap').cutSync;
+var cutSync = require('./libs/node_segment_wrap').cutSync;
 
 var editor = new Simditor({
     textarea: $('#editor')
@@ -41,21 +42,38 @@ var play_audios = function(list){
 
 //发声
 $('#btn-speak').on('click', function () {
-    var word = '';
+    var sentence = '';
     if (!window.getSelection().isCollapsed) {
-        word = window.getSelection();
+        sentence = window.getSelection();
     }
 
-    word = word || $(editor.getValue()).text() || '请写入文字';
-    voices = [];
+    sentence = sentence || $(editor.getValue()).text() || '请写入文字';
 
-    for(var i=0;i<word.length;i++){
-        var path = './voice/raw/{cn}.mp3'.replace('{cn}',word[i]);
-        console.log(path);
-        if(fs.existsSync(path)){
-            voices.push(path)
+    voices = [];
+    var type = 1;//单个字读
+    type=2; //分词
+    if(type == 1){
+        for(var i=0;i<sentence.length;i++){
+            var path = './voice/raw/{cn}.mp3'.replace('{cn}',sentence[i]);
+            console.log(path);
+            if(fs.existsSync(path)){
+                voices.push(path)
+            }
+        }
+    }else if(type == 2){
+        //var cut_words = cutSync(word);
+        var cut_words = cutSync(sentence);
+        for(var i=0;i<cut_words.length;i++){
+            var path = './voice/raw/{cn}.mp3'.replace('{cn}',cut_words[i]);
+            console.log(path);
+            if(fs.existsSync(path)){
+                voices.push(path)
+            }else{
+                console.log(cut_words[i]+" voice not exiest");
+            }
         }
     }
+
     //分词，停顿
     play_audios(voices);
 

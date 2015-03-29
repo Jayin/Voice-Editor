@@ -1,6 +1,6 @@
 {
   "name": "Voice_Editor",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "发声文本编辑器.",
   "main": "main.html",
   "window": {
@@ -8,7 +8,7 @@
     "height": 610,
     "show": true,
     "title": "发声文本编辑器",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "resizable": false
   },

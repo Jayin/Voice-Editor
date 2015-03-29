@@ -4,6 +4,7 @@ var fs = require('fs');
 var gui = require('nw.gui');
 //var cutSync = require('./libs/jieba_wrap').cutSync;
 var cutSync = require('./libs/node_segment_wrap').cutSync;
+var isPunctuation = require('./libs/punctuation').isPunctuation;
 
 var editor = new Simditor({
     textarea: $('#editor')
@@ -60,7 +61,11 @@ $('#btn-speak').on('click', function () {
             if(fs.existsSync(path)){
                 voices.push(path)
             }else{
-                console.error('[Word]: {word} is not exist!'.replace('{word}', sentence[i]));
+                if(isPunctuation(sentence[i])){
+                    console.log('[Punctuation]: {punctuation} is not exist!'.replace('{punctuation}', sentence[i]));
+                }else{
+                    console.error('[Word]: {word} is not exist!'.replace('{word}', sentence[i]));
+                }
             }
         }
         return voices;
@@ -77,8 +82,12 @@ $('#btn-speak').on('click', function () {
             if(fs.existsSync(path)){
                 voices.push(path)
             }else{
-                console.error('[Segment]: {segment} is not exist!'.replace('{segment}', cut_words[i]));
-                voices = voices.concat(single_word(cut_words[i]));
+                if(isPunctuation(cut_words[i])){
+                    console.log('[Punctuation]: {punctuation} is not exist!'.replace('{punctuation}', cut_words[i]));
+                }else{
+                    console.error('[Segment]: {segment} is not exist!'.replace('{segment}', cut_words[i]));
+                    voices = voices.concat(single_word(cut_words[i]));
+                }
             }
         }
         return voices;

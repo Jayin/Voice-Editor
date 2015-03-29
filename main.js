@@ -1,6 +1,5 @@
 global.$ = $;
 
-var request = require('request');
 var fs = require('fs');
 var gui = require('nw.gui');
 //var cutSync = require('./libs/jieba_wrap').cutSync;

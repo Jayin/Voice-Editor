@@ -13,7 +13,6 @@ var ele_audio = $('#audio');
 
 var voices = []; //声音播放列表
 var type = 1;//智能分词朗读模式
-type=2; //单字朗读模式
 
 
 if (process.platform === "darwin") {
@@ -79,8 +78,8 @@ $('#btn-speak').on('click', function () {
             if(fs.existsSync(path)){
                 voices.push(path)
             }else{
-                console.error('[Segment]: {segment} is not exist!'.replace('{segment}', sentence[i]));
-                voices = voices.concat(single_word(sentence[i]));
+                console.error('[Segment]: {segment} is not exist!'.replace('{segment}', cut_words[i]));
+                voices = voices.concat(single_word(cut_words[i]));
             }
         }
         return voices;
@@ -91,7 +90,7 @@ $('#btn-speak').on('click', function () {
     }else {
         voices = single_word(sentence);
     }
-
+    console.log(voices);
     //分词，停顿
     play_audios(voices);
 

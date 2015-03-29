@@ -11,6 +11,10 @@ var editor = new Simditor({
 });
 var ele_audio = $('#audio');
 
+var voices = []; //声音播放列表
+var type = 1;//智能分词朗读模式
+type=2; //单字朗读模式
+
 
 if (process.platform === "darwin") {
     var mb = new gui.Menu({type: 'menubar'});
@@ -82,13 +86,10 @@ $('#btn-speak').on('click', function () {
         return voices;
     };
 
-    var voices = [];
-    var type = 1;//单个字读
-    type=2; //分词
     if(type == 1){
-        voices = single_word(sentence);
-    }else if(type == 2){
         voices = cut_word(sentence);
+    }else {
+        voices = single_word(sentence);
     }
 
     //分词，停顿
@@ -132,6 +133,11 @@ $('#btn-openFile').on('click',function(evt){
 
 $('#btn-about').on('click',function(){
     $('#modal-about').modal('show')
+});
+
+$('#select-model').on('change',function(){
+    type = $(this).val();
+    console.log('on change->' + type);
 });
 
 var init = function () {

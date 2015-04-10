@@ -19,7 +19,9 @@
 
 
     <!--custom-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
 
 <body>
@@ -56,7 +58,12 @@
     </audio>
     <input class="invisible" id="input-openFile" type="file"/>
     <input class="invisible" id="input-saveFile" type="file" nwsaveas="tmp.html"/>
-
+    <div class="ve-modal">
+        <div class="ve-modal-dialog ve-modal-dialog-speaking">
+            <span class="glyphicon glyphicon-volume-up" style="font-size: 1.4em;"></span><p>播放中</p>
+        </div>
+    </div>
+    <!-- 关于对话框-->
     <div class="modal fade" id="modal-about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -25,26 +25,51 @@ if (process.platform === "darwin") {
 }
 
 
+//更新播放状态框
+var updateModalDialog = function(visiblity, content){
+
+    content = content || '播放中';
+    if('show' === visiblity){
+        $('.ve-modal').show();
+        $('.ve-modal  p').text(content);
+    }else{
+        $('.ve-modal').hide();
+    }
+
+};
+
 var play_audio = function (audio_src) {
     ele_audio.attr('src', audio_src);
     ele_audio[0].play();
+
 };
 
 var play_audios = function(list){
-    var index = 0;
+    updateModalDialog('show');
 
+    var index = 0;
     ele_audio.on('ended',function(){
         index++;
         if(index<list.length){
+            console.log(index);
             play_audio(list[index]);
+        }else{
+            console.log('ok');
+            setTimeout(function(){
+                updateModalDialog('hide');
+            },1500)
         }
 
     });
     play_audio(list[0]);
 };
 
+
+
 //发声
 $('#btn-speak').on('click', function () {
+    updateModalDialog('show', '处理中..');
+
     var sentence = '';
     if (!window.getSelection().isCollapsed) {
         sentence = window.getSelection();
@@ -147,14 +172,16 @@ $('#select-model').on('change',function(){
     console.log('on change->' + type);
 });
 
-var init = function () {
 
+
+var init = function () {
 
     //init UI
     $('#text-version').text(' v' + gui.App.manifest.version);
 
+
     play_audio('./voice/hello.mp3');
-}
+};
 init();
 
 
